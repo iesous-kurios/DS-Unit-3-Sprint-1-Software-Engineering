@@ -262,9 +262,19 @@ career here, you'll have to answer the following:
 - What, in your opinion, is an important part of code reviews? That is, what is
   something you pay attention to when you review code, and that you appreciate
   when others do the same for your code?
+
+Code reviews are crucial because a fresh set of eyes on your code will almost always
+help you spot something that you didn't notice about your code.  Sometimes major, sometimes
+minor, but our brain usually does a good job of making sense out of stuff we do, so another pair of 
+eyes can help ensure it is functioning the way it is supposed to and flows easily, also that you 
+aren't making things harder or more complicated than they need to be
+
 - We have an awful lot of computers here, and it gets pretty confusing with
   slightly different things running on all of them. How could containers help us
   improve this situation?
+
+Containers help by providing the same environment for running applications no matter which type of system you are on.
+A container is designed to include all that a person would need to run your package.  
 
 Answer both of these questions (baseline ~5 sentences) here in text.
 
