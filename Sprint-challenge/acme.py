@@ -25,7 +25,7 @@ class Product:
 
     """
 
-    def __init__(self, name: str) -> None:
+    def __init__(self, name: str):
         # Instance variable.
         self.name = None
         self.price = 10
@@ -37,7 +37,7 @@ class Product:
         """Return the class name and dict of instance variables and their values when printing the instance."""
         return f'{self.__class__} {self.__dict__}'
 
-    def stealability(self) -> None:
+    def stealability(self):
         """calculates price divided by weight, and returns a message"""
         cop_that = self.price / self.weight
         if cop_that < 0.5:
@@ -97,7 +97,7 @@ class BoxingGlove(Product):
 
     def explode(self) -> None:
         print("...it's a glove")   
-        
+
 
 
 
