@@ -1,37 +1,43 @@
-#!/usr/bin/env python
-from acme import Product
-from itertools import chain
 from random import randint, sample, uniform
+from acme import Product
 
 
-# Useful to use with random.sample to generate names
-ADJECTIVES = ['Awesome', 'Shiny', 'Impressive', 'Portable', 'Improved']
-NOUNS = ['Anvil', 'Catapult', 'Disguise', 'Mousetrap', '???']
+ADJECTIVES = ['Classic', 'Shiny', 'Explosive', 'New', 'Improved']
+NOUNS = ['Anvil', 'Catapult', 'Tunnel', 'Dynomite', 'TNT']
 
 
 def generate_products(num_products=30):
+    """Make random products"""
     products = []
-    i = 0
-    while i < num_products:
-        x = Product(object)
-        x.name = random.choice(ADJECTIVES) + ' ' + random.choice(NOUNS)
-        x.price = random.randint(5, 101)
-        x.weight = random.randint(5, 101)
-        x.flammability = random.uniform(0.0, 2.6)
-        products.append(x)
-        i += 1
-    return products  
+    for _ in range(num_products):
+        name = sample(ADJECTIVES, 1)[0] + ' ' + sample(NOUNS, 1)[0]
+        price = randint(5, 100)
+        weight = randint(5, 100)
+        flammability = uniform(0.0, 2.5)
+        products.append(Product(name, price=price, weight=weight,
+                                flammability=flammability))
+    return products
+
 
 def inventory_report(products):
-    unique_words = set(products)          
-    unique_word_count = len(unique_words)
-    print('Total unique name combinations is: ', unique_word_count)
-
-
-    
-    pass  # TODO - your code! Loop over the products to calculate the report.
+    """Takes the list of products, and prints a report."""
+    # create set to track unique names
+    names = set()
+    total_price = 0
+    total_weight = 0
+    total_flammability = 0.0
+    for product in products:
+        names.add(product.name)
+        total_price += product.price
+        total_weight += product.weight
+        total_flammability += product.flammability
+    print("ACME CORPORATION OFFICIAL INVENTORY REPORT")
+    print("Unique product names: {}".format(len(names)))
+    print("Average price: {}".format(total_price / len(products)))
+    print("Average weight: {}".format(total_weight / len(products)))
+    print("Average flammability: {}".format(
+        total_flammability / len(products)))
 
 
 if __name__ == '__main__':
-    inventory_report(generate_products())    
-
+    inventory_report(generate_products())

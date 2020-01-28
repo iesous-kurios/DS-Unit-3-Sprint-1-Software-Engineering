@@ -1,8 +1,11 @@
 """Software Engineering - the Acme Way"""
 
-import numpy as np
+import random
+from random import randint
+
 
 class Product:
+
     """Base class for all Products.
     :var name: str
     :var price: int
@@ -12,29 +15,40 @@ class Product:
 
     Methods:
     - stealability(self)
-        - calculates the price divided by the weight, 
-        and then returns a message: 
-        if the ratio is less than 0.5 return "Not so stealable...", 
-        if it is greater or equal to 0.5 but less than 1.0 return "Kinda stealable.", 
-        and otherwise return "Very stealable!"
-        
-    - explode(self) - calculates the flammability times the weight, 
-    and then returns a message: if the product is less than 10 return "...fizzle.", 
-    if it is greater or equal to 10 but less than 50 return "...boom!", 
-    and otherwise return "...BABOOM!!"
+        - calculates the price divided by the weight,
+        and then returns a message:
+        if the ratio is less than 0.5 return "Not so stealable...",
+        if it is greater or equal to 0.5 but less than 1.0 return
+        "Kinda stealable.", and otherwise return "Very stealable!"
+
+    - explode(self) - calculates the flammability times the weight,
+    and then returns a message: if the product is less than 10 return
+    "...fizzle.", if it is greater or equal to 10 but less than 50
+    return "...boom!", and otherwise return "...BABOOM!!"
 
     """
 
-    def __init__(self, name: str):
-        # Instance variable.
-        self.name = None
-        self.price = 10
-        self.weight = 20
-        self.flammability = 0.5
-        self.identifier = np.random.randint(1000000, 10000000)
+    def __init__(self, name, price=10, weight=20, flammability=0.5):
+        self.name = name
+        self.price = price
+        self.weight = weight
+        self.flammability = flammability
+        self.identifier = randint(1000000, 9999999)
+
+    def __iter__(self):
+        return [self.name,
+                self.price,
+                self.weight,
+                self.flammability,
+                self.identifier,
+                ]
+
+    def __iter__(self):
+        return self
 
     def __repr__(self):
-        """Return the class name and dict of instance variables and their values when printing the instance."""
+        """Return the class name and dict of instance variables and their
+        values when printing the instance."""
         return f'{self.__class__} {self.__dict__}'
 
     def stealability(self):
@@ -51,7 +65,8 @@ class Product:
             print('Very stealable!')
 
     def explode(self) -> None:
-        """calculates flammability multiplied by weight, and returns a message"""
+        """calculates flammability multiplied by weight,
+        and returns a message"""
         go_boom = self.flammability * self.weight
         if go_boom < 10:
             print('...fizzle.')
@@ -61,11 +76,12 @@ class Product:
                 print('...boom!')
 
         if go_boom >= 50:
-            print('...BABOOM!!')            
+            print('...BABOOM!!')
+
 
 class BoxingGlove(Product):
     """Class for making Boxing Gloves. Inherits from Product.
-    
+
     Class variables:
     - weight: 10
     - overrides explode function from Product class
@@ -73,17 +89,18 @@ class BoxingGlove(Product):
     Methods:
     - punch:
         - checks weight then returns a message.
-    
+
     """
 
     def __init__(self, name: str, ) -> None:
         # Call super to instantiate parent class instance variables.
         super().__init__(name)  # Pass parent variables to super.
         # Instantiate a specific product instance variable.
-        self.weight = 10            
-    
+        self.weight = 10
+
     def punch(self) -> None:
-        """get weight of glove then determine if it will hurt to get punched by this particular glove"""
+        """get weight of glove then determine if it will hurt to get
+        punched by this particular glove"""
 
         if self.weight < 5:
             print('That tickles.')
@@ -93,12 +110,7 @@ class BoxingGlove(Product):
                 print('Hey that hurt!')
 
         if self.weight >= 15:
-            print('OUCH!')            
+            print('OUCH!')
 
     def explode(self) -> None:
-        print("...it's a glove")   
-
-
-
-
-
+        print("...it's a glove")
